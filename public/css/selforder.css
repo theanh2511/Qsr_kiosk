@@ -2281,6 +2281,8 @@ p.entry-content {
 
 span.show-price {
     font-style: italic;
+    font-size: 18px;
+    font-weight: 700;
     /*text-decoration: underline;*/
 }
 
@@ -2410,4 +2412,25 @@ a.menu-catg {
 
 .related-product {
     margin-top: 10px;
+}
+
+.label-sale {
+    color: red;
+}
+
+.box-cart {
+    position: fixed;
+    top: 1180px;
+    left: 60%;
+    float: right;
+    color: white;
+    width: 40%;
+    /*height: 150px;*/
+    margin: 0 auto;
+    bottom: 0;
+    background: rgba(43, 43, 43, 0.7);
+    padding: 10px;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    background-clip: padding-box;
 }

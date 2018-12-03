@@ -36,19 +36,11 @@
 
 @yield('body')
 <div class="header col-md-12 col-sm-12">
-    <div class="">
 
-        <a href="/your-cart" class="notification">
-            <i class="fa fa-shopping-cart fa-3x" aria-hidden="true"></i>
-            <span>Your cart</span>
-            <span class="badge">3</span>
-        </a>
-        <span>Tổng giá trị đơn hàng: 500,000 VNĐ</span>
-    </div>
 </div>
 
 <div class="col-md-12 col-sm-12 text-center flat-row flat-wooc">
-    <h2>Menu</h2>
+    <h2>{{$catg_name}}</h2>
     @for($i=1;$i<=3;$i++)
         @foreach($products as $prod)
             <div class="col-sm-4 col-md-4 col-xs-6 product-box">
@@ -64,8 +56,36 @@
                         </div>
 
                         <div class="">
-                            <ul class="list-group list-group-horizontal">
-                                <li class="list-group-item">
+                            {{--<ul class="list-group list-group-horizontal">--}}
+                            {{--<li class="list-group-item">--}}
+                            {{--@if(formatNumber($prod->DiscountRate,0,1)!=0)--}}
+                            {{--<p class="original-price">SalesOff:--}}
+                            {{--<b>{{formatNumber($prod->DiscountRate,0,1).' %'}}</b>&emsp;&emsp;--}}
+                            {{--<strike>{{formatNumber($prod->OriginalUnitPrice)}}VNĐ</strike>--}}
+                            {{--</p>--}}
+                            {{--@endif--}}
+                            {{--<span class="show-price" title="{{formatNumber($prod->UnitPrice)}} VNĐ">{{formatNumber($prod->UnitPrice)}}--}}
+                            {{--VNĐ</span>--}}
+
+                            {{--</li>--}}
+                            {{--<li class="list-group-item">--}}
+                            {{--<span class="list-group-item pull-right add-to-cart cursor-pointer"--}}
+                            {{--product-code="{{$prod->Code}}" product-name="{{$prod->Name}}"--}}
+                            {{--product-unit="{{$prod->Unit}}" product-unitprice="{{$prod->UnitPrice}}">--}}
+                            {{--<i class="fa fa-shopping-cart fa-2x" title="Add to cart"></i>--}}
+                            {{--</span>--}}
+                            {{--</li>--}}
+
+                            {{--<li class="list-group-item pull-right add-to-cart cursor-pointer"--}}
+                            {{--product-code="{{$prod->Code}}" product-name="{{$prod->Name}}"--}}
+                            {{--product-unit="{{$prod->Unit}}" product-unitprice="{{$prod->UnitPrice}}">--}}
+                            {{--<i class="fa fa-shopping-cart fa-2x" title="Add to cart"></i>--}}
+                            {{--</li>--}}
+                            {{--</ul>--}}
+
+
+                            <ul class="list-inline list-group" style="height: 50px;">
+                                <li class="list-inline-item" style="margin-top: 15px;">
                                     @if(formatNumber($prod->DiscountRate,0,1)!=0)
                                         <p class="original-price">SalesOff:
                                             <b>{{formatNumber($prod->DiscountRate,0,1).' %'}}</b>&emsp;&emsp;
@@ -74,17 +94,14 @@
                                     @endif
                                     <span class="show-price" title="{{formatNumber($prod->UnitPrice)}} VNĐ">{{formatNumber($prod->UnitPrice)}}
                                         VNĐ</span>
+                                </li>
+                                <li class="list-inline-item pull-right">
                                     <span class="list-group-item pull-right add-to-cart cursor-pointer"
                                           product-code="{{$prod->Code}}" product-name="{{$prod->Name}}"
                                           product-unit="{{$prod->Unit}}" product-unitprice="{{$prod->UnitPrice}}">
                                     <i class="fa fa-shopping-cart fa-2x" title="Add to cart"></i>
-                                </span>
+                                    </span>
                                 </li>
-                                {{--<li class="list-group-item pull-right add-to-cart cursor-pointer"--}}
-                                {{--product-code="{{$prod->Code}}" product-name="{{$prod->Name}}"--}}
-                                {{--product-unit="{{$prod->Unit}}" product-unitprice="{{$prod->UnitPrice}}">--}}
-                                {{--<i class="fa fa-shopping-cart fa-2x" title="Add to cart"></i>--}}
-                                {{--</li>--}}
                             </ul>
                         </div>
                     </div>
@@ -93,6 +110,24 @@
         @endforeach
     @endfor
 </div>
+
+{{--<div class="col-md-12 col-sm-12">--}}
+    {{--<div class="box-cart">--}}
+        {{--<div class="nav">--}}
+            {{--<ul>--}}
+                {{--<li>SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS/li>--}}
+                {{--<li>SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS</li>--}}
+                {{--<li>SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS</li>--}}
+                {{--<li>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</li>--}}
+            {{--</ul>--}}
+        {{--</div>--}}
+        {{--<div>--}}
+            {{--<p>Tổng cộng: {{formatNumber($total_cart_amount)}} VNĐ--}}
+                {{--<span class="pull-right cart-info"><i class="fa fa-chevron-down" aria-hidden="true"></i></span>--}}
+            {{--</p>--}}
+        {{--</div>--}}
+    {{--</div>--}}
+{{--</div>--}}
 
 
 <div class="footer col-md-12 col-sm-12">
@@ -114,6 +149,14 @@
         <a href="#">
             <i class="fa fa-arrow-right fa-3x" aria-hidden="true"></i>
             <span>Next page</span>
+        </a>
+    </div>
+
+    <div class="col-md-3 col-sm-3 col-xs-3 btn btn-default footer-button">
+        <a href="/your-cart" class="notification">
+            <i class="fa fa-shopping-cart fa-3x" aria-hidden="true"></i>
+            <span>Your cart</span>
+            <span class="badge label-cart">{{$total_cart_quan}}</span>
         </a>
     </div>
 </div>

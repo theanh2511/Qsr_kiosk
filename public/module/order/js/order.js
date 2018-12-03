@@ -56,6 +56,18 @@ function initEvents() {
             });
         });
 
+        //cart-info
+        $(document).on('click', '.cart-info', function () {
+            var nav = $('.nav'),
+                animateTime = 500,
+                navLink = $('.header .top .navLink');
+            if (nav.height() === 0) {
+                autoHeightAnimate(nav, animateTime);
+            } else {
+                nav.stop().animate({height: '0'}, animateTime);
+            }
+        });
+
         //btn-print
         $(document).on('click', '#btn-print', function () {
             try {
@@ -97,6 +109,7 @@ function initEvents() {
             $('#total-amount').text(addCommas(sum));
             // console.log(sum);
         });
+
 
     } catch (e) {
         alert('initialize: ' + e.message);
@@ -191,4 +204,13 @@ function getDetail() {
     });
 
     return data;
+}
+
+
+/* Function to animate height: auto */
+function autoHeightAnimate(element, time) {
+    var curHeight = element.height(), // Get Default Height
+        autoHeight = element.css('height', 'auto').height(); // Get Auto Height
+    element.height(curHeight); // Reset to Default Height
+    element.stop().animate({height: autoHeight}, time); // Animate to Auto Height
 }

@@ -18,89 +18,116 @@
 @stop
 
 @section('content')
-    <div class="row form-horizontal">
-        <div class="panel panel-flat">
-            <div class="panel-body">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="form-group">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover table-striped" id="tbl-explorer">
-                                <thead>
-                                <tr class="col-table-header text-center">
-                                    <th class="text-center">{{ trans('master_product.name') }}</th>
-                                    <th class="text-center" width="10%">{{ trans('master_product.Unit') }}</th>
-                                    <th class="text-center" width="10%">{{ trans('master_product.Quantity') }}</th>
-                                    <th class="text-center" width="15%">{{ trans('master_product.UnitPrice') }}</th>
-                                    <th class="text-center" width="15%">{{ trans('master_product.Amount') }}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @if(count($products)=='0')
-                                    <tr>
-                                        <td class="text-center" colspan="5">{{ trans('master_product.EmptyCart') }}</td>
-                                    </tr>
-                                @else
-                                    @foreach($products as $item)
-                                        <tr>
-                                            <td class="hidden">
-                                                <span class="product-code">{{$item['ProductCode']}}</span>
-                                            </td>
-                                            <td class="text-left">
-                                                <i class="fa fa-minus-circle text-danger cursor-pointer remove-row"
-                                                   aria-hidden="true" title="Remove row"></i>
-                                                <span class="product-name">{{$item['ProductName']}}</span>
-                                            </td>
-                                            <td class="text-left product-unit">{{$item['Unit']}}</td>
-                                            <td class="text-right">
-                                                <div class="input-group" style="width: 120px;">
+    <div class="header col-md-12 col-sm-12">
+        <p class="label-sale">SALE 50% 30% 20%.................</p>
+    </div>
+
+    <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 50px;">
+        <div class="form-group">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped" id="tbl-explorer">
+                    <thead>
+                    <tr class="col-table-header text-center">
+                        <th class="text-center">{{ trans('master_product.name') }}</th>
+                        <th class="text-center" width="10%">{{ trans('master_product.Unit') }}</th>
+                        <th class="text-center" width="10%">{{ trans('master_product.Quantity') }}</th>
+                        <th class="text-center" width="15%">{{ trans('master_product.UnitPrice') }}</th>
+                        <th class="text-center" width="15%">{{ trans('master_product.Amount') }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @if(count($products)=='0')
+                        <tr>
+                            <td class="text-center" colspan="5">{{ trans('master_product.EmptyCart') }}</td>
+                        </tr>
+                    @else
+                        @foreach($products as $item)
+                            <tr>
+                                <td class="hidden">
+                                    <span class="product-code">{{$item['ProductCode']}}</span>
+                                </td>
+                                <td class="text-left">
+                                    <i class="fa fa-minus-circle text-danger cursor-pointer remove-row"
+                                       aria-hidden="true" title="Remove row"></i>
+                                    <span class="product-name">{{$item['ProductName']}}</span>
+                                </td>
+                                <td class="text-left product-unit">{{$item['Unit']}}</td>
+                                <td class="text-right">
+                                    <div class="input-group" style="width: 120px;">
                                             <span class="input-group-addon cursor-pointer btn-minus">
                                                 <i class="glyphicon glyphicon-minus"></i>
                                             </span>
-                                                    <input type="text"
-                                                           class="form-control numeric numeric-input quantity"
-                                                           value="{{formatNumber($item['Quantity'])}}" readonly/>
-                                                    <span class="input-group-addon cursor-pointer btn-plus">
+                                        <input type="text"
+                                               class="form-control numeric numeric-input quantity"
+                                               value="{{formatNumber($item['Quantity'])}}" readonly/>
+                                        <span class="input-group-addon cursor-pointer btn-plus">
                                                 <i class="glyphicon glyphicon-plus"></i>
                                             </span>
-                                                </div>
-                                            </td>
-                                            <td class="text-right unit-price">{{formatNumber($item['UnitPrice'])}}</td>
-                                            <td class="text-right amount">{{formatNumber($item['Amount'])}}</td>
-                                        </tr>
-                                    @endforeach
-                                @endif
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th class="text-right"
-                                        colspan="4">{{ trans('master_product.TotalDiscountAmount') }}</th>
-                                    <th class="text-right"
-                                        id="total-discount">{{formatNumber($total_cart_discount_amount??'0')}}
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th class="text-right" colspan="4">{{ trans('master_product.TotalTaxAmount') }}</th>
-                                    <th class="text-right" id="total-tax">{{formatNumber($total_cart_tax_amount??'0')}}
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th class="text-right" colspan="4">{{ trans('master_product.TotalAmount') }}</th>
-                                    <th class="text-right" id="total-amount">{{formatNumber($total_cart_amount??'0')}}
-                                    </th>
-                                </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-
-                        <a id="btn-print" class="btn menu-catg pull-right" href="javascript:void(0);"
-                           title="{{trans('master_product.BuyNow')}}">
-                            <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
-                            <span> Buy now</span>
-                        </a>
-                    </div>
-                </div>
-
+                                    </div>
+                                </td>
+                                <td class="text-right unit-price">{{formatNumber($item['UnitPrice'])}}</td>
+                                <td class="text-right amount">{{formatNumber($item['Amount'])}}</td>
+                            </tr>
+                        @endforeach
+                    @endif
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th class="text-right"
+                            colspan="4">{{ trans('master_product.TotalDiscountAmount') }}</th>
+                        <th class="text-right"
+                            id="total-discount">{{formatNumber($total_cart_discount_amount??'0')}}
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="text-right" colspan="4">{{ trans('master_product.TotalTaxAmount') }}</th>
+                        <th class="text-right" id="total-tax">{{formatNumber($total_cart_tax_amount??'0')}}
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="text-right" colspan="4">{{ trans('master_product.TotalAmount') }}</th>
+                        <th class="text-right" id="total-amount">{{formatNumber($total_cart_amount??'0')}}
+                        </th>
+                    </tr>
+                    </tfoot>
+                </table>
             </div>
+
+            <a id="btn-print" class="btn menu-catg pull-right" href="javascript:void(0);"
+               title="{{trans('master_product.BuyNow')}}">
+                <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                <span> Buy now</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="footer col-md-12 col-sm-12">
+        <div class="col-md-3 col-sm-3 col-xs-3 btn btn-default footer-button">
+            <a href="/catalogs">
+                <i class="fa fa-home fa-3x" aria-hidden="true"></i>
+                <span>Home</span>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-3 btn btn-default footer-button">
+            <a href="#" style="width: 100%;height: 100%;" onclick="window.history.go(-1); return false;">
+                <i class="fa fa-arrow-left fa-3x" aria-hidden="true"></i>
+                <span>Back</span>
+            </a>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-3 btn btn-default footer-button disabled">
+            {{--<a href="#">--}}
+            {{--<i class="fa fa-arrow-right fa-3x" aria-hidden="true"></i>--}}
+            {{--<span>Next</span>--}}
+            {{--</a>--}}
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-xs-3 btn btn-default footer-button">
+            {{--<a href="#" class="notification">--}}
+            {{--<i class="fa fa-check-square-o fa-3x" aria-hidden="true"></i>--}}
+            {{--<span>Add to cart</span>--}}
+            {{--</a>--}}
         </div>
     </div>
 
