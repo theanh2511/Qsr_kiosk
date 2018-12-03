@@ -43,7 +43,7 @@
             <span>Your cart</span>
             <span class="badge">3</span>
         </a>
-        <span>Tổng giá trị đơn hàng: 300,000 VNĐ</span>
+        <span>Tổng giá trị đơn hàng: 500,000 VNĐ</span>
     </div>
 </div>
 
