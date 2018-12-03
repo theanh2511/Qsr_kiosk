@@ -1,0 +1,165 @@
+/* 
+*******************************************************************************
+* MANNET
+* jquery.alerts.css
+* 
+* 処理概要		:	css for dialog
+* 作成日			:	2015/09/23
+* 作成者			:	viettd – viettd@ans-asia.com
+* 
+* 更新日			:	
+* 更新者			:	
+* 更新内容		:	
+* 
+* @package		:	COMMON
+* @copyright	:	Copyright (c) ANS-ASIA
+* @version		:	1.0.0
+*******************************************************************************
+*/
+
+#popup_container {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    min-width: 350px;
+    /* Dialog will be no smaller than this */
+    max-width: 580px;
+    /* Dialog will wrap after this width */
+    display: block;
+    margin-top: -145px;
+    background-color: #fff;
+    width: 400px;
+    /*height: 130px;*/
+    padding: 10px 0px;
+    border-radius: 3px;
+    text-align: center;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left: -235px;
+    overflow: hidden;
+    z-index: 1060;
+}
+#popup_content {
+    margin-top: 25px;
+}
+#popup_title {
+    margin-top: -10px;
+    font-weight: bold;
+    text-align: left;
+    font-size: 15px;
+    color: #FFF;
+    border-bottom: 1px solid #ddd;
+    padding: 2px;
+    padding-left: 16px;
+    width: auto;
+    overflow: hidden;
+}
+#popup_icon {
+    background: 16px 16px no-repeat url(../images/pnotify/info.png);
+    height: 70px;
+    width: 70px;
+    margin: 0px auto;
+    float: left;
+}
+#popup_icon.alert {
+    background: 16px 16px no-repeat url(../images/pnotify/info.png);
+}
+#popup_icon.confirm {
+    background: 16px 16px no-repeat url(../images/pnotify/confirm.png);
+}
+#popup_icon.info {
+    background: 16px 16px no-repeat url(../images/pnotify/info.png);
+}
+#popup_icon.success {
+    background: 16px 16px no-repeat url(../images/pnotify/success.png);
+}
+#popup_icon.warning {
+    background: 16px 16px no-repeat url(../images/pnotify/warning.png);
+}
+#popup_icon.error {
+    background: 16px 16px no-repeat url(../images/pnotify/danger.png);
+}
+.alert-bg {
+    background: #44a4e4;
+}
+.confirm-bg {
+    background: #31B8D2;
+}
+.info-bg {
+    background: #44a4e4;
+}
+.success-bg {
+    background: #36c274;
+}
+.warning-bg {
+    background: #e88245;
+}
+.error-bg {
+    background: red;
+}
+#popup_panel {
+    text-align: right;
+    margin: 25px 0em 0em 0em;
+}
+#popup_panel1 {
+    text-align: right;
+    margin: 25px 0em 0em 0em;
+}
+#popup_panel1 button {
+    float: right;
+    margin-right: 13px;
+}
+#popup_panel .btn, #popup_panel1 .btn {
+    width: 80px;
+    background: #eee;
+    border-color: #bbb;
+}
+#popup_message {
+    text-align: left;
+}
+#popup_panel button:nth-child(1) {
+    margin-right: 15px;
+}
+#popup_panel button:nth-child(2) {
+    float: right;
+    margin-right: 13px;
+}
+#popup_prompt {
+    margin: .5em 0em;
+}
+.icon-close {
+    float: right;
+    margin-right: 10px;
+    padding-top: 3px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+#popup_overlay{
+	position: absolute;
+	z-index: 1030;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+}
+/*smartphone, tablet when screen size (width) < 768px */
+
+#popup_cancel:focus{
+    background-color: #c7c7c7;
+}
+#popup_ok:focus{
+    background-color: #c7c7c7;
+}
+
+@media (max-width: 520px) {
+    #popup_container {
+        max-width: inherit;
+        min-width: inherit;
+        width: auto;
+        margin-left: 0;
+        margin-right: 0;
+        left: 20px;
+        right: 20px;
+    }
+}
+}

@@ -1,0 +1,11 @@
+.img-div img {
+    height: 80%;
+    width: 80%;
+    margin-bottom: 5px;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+

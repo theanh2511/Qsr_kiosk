@@ -1,0 +1,11 @@
+.img-div img {
+    height: 100%;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.text-overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
