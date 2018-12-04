@@ -25,6 +25,8 @@ class CreateFDiscountTable extends Migration
             $table->float('DiscountRate', 5, 4)->default('0');
             $table->double('DiscountAmount', 18, 2)->default('0');
 
+            $table->boolean('SaleWithCode')->default('0');
+            $table->string('SaleCode', 32)->default('');
             $table->boolean('IsActive')->default('1');
             $table->integer('CreatedBy')->default('-1');
             $table->timestamp('CreatedAt')->nullable();

@@ -37,6 +37,7 @@ class ProductController extends Controller
         }
 
         $product_detail = DB::table($this->screen)->where('id', $primary_key)->first();
+        $child_product = DB::table('m_product_detail')->where('ParentProductCode', $product_detail->Code)->get();
 
         //process show images
         $filesInFolder = [];
@@ -55,6 +56,7 @@ class ProductController extends Controller
         $data['product'] = $product_detail;
         $data['catalogs'] = $catalogs;
         $data['product_images'] = $arrImgs;
+        $data['child_product'] = $child_product;
 
         return view('product.detail', $data);
     }
@@ -118,15 +120,23 @@ class ProductController extends Controller
         DB::beginTransaction();
         try {
             $form_data = json_decode($request->form_data, true);
+            $data = $form_data['ParentData'];
+//            $detail_data = $form_data['DetailData'];
 
             if ($this->screen != '') {
-                $primaryKey = $form_data['id'] ?? -1;
-                $data = array_filter($form_data, function ($value) {
+                $primaryKey = $data['id'] ?? -1;
+                $data = array_filter($data, function ($value) {
+                    return ($value !== '' && $value !== null);
+                });
+
+                $detail_data = array_filter($form_data['DetailData'], function ($value) {
                     return ($value !== '' && $value !== null);
                 });
 
                 if ($primaryKey == '-1') {
                     $primaryKey = DB::table($this->screen)->insertGetId(array_except($data, ['id']));
+
+                    DB::table('m_product_detail')->insert(array_except($detail_data, ['id']));
 
                     $result = array(
                         'status' => '200',
@@ -136,6 +146,9 @@ class ProductController extends Controller
                     DB::table($this->screen)
                         ->where('id', $primaryKey)
                         ->update($data);
+
+                    DB::table('m_product_detail')->where('ParentProductCode', '=', $data['Code'])->delete();
+                    DB::table('m_product_detail')->insert(array_except($detail_data, ['id']));
 
                     $result = array(
                         'status' => '200',

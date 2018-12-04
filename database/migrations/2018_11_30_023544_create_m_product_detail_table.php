@@ -15,8 +15,9 @@ class CreateMProductDetailTable extends Migration
     {
         Schema::create('m_product_detail', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('ParentProductId')->default('-1');
-            $table->integer('ChildProductId')->default('-1');
+            $table->integer('DetailNo')->default('-1');
+            $table->string('ParentProductCode', 32)->default('');
+            $table->string('ChildProductCode', 32)->default('');
             $table->double('Quantity', 8, 2)->default('0');
             $table->boolean('IsActive')->default('1');
             $table->integer('CreatedBy')->default('-1');

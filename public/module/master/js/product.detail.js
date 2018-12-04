@@ -250,12 +250,16 @@ function initEvents() {
 
 function save() {
     try {
-        var data = getFormValue()[0];
-        data.IsActive = 1;
-        data.CreatedBy = 1;
-        data.ModifiedBy = 1;
-        console.log(data);
+        var data = {};
+        var parent_data = getFormValue()[0];
+        parent_data.IsActive = 1;
+        parent_data.CreatedBy = 1;
+        parent_data.ModifiedBy = 1;
 
+        data.ParentData = parent_data;
+        data.DetailData = getDetail();
+        console.log(data);
+        return;
         $.ajax({
             type: 'POST',
             url: '/master/product/save',
@@ -310,10 +314,16 @@ function saveFormData() {
         });
 
         //for form data
-        var data = getFormValue()[0];
-        data.IsActive = 1;
-        data.CreatedBy = 1;
-        data.ModifiedBy = 1;
+        var data = {};
+        var parent_data = getFormValue()[0];
+        parent_data.IsActive = 1;
+        parent_data.CreatedBy = 1;
+        parent_data.ModifiedBy = 1;
+
+        data.ParentData = parent_data;
+        data.DetailData = getDetail();
+
+
         form_data.append('form_data', JSON.stringify(data));
 
         $.ajax({
@@ -410,4 +420,25 @@ function reRowIndex() {
     $('#tbl-detail tbody tr').each(function (i, row) {
         $(row).find('.zstt').text(i + 1);
     });
+}
+
+function getDetail() {
+    var data = {};
+    $('#tbl-detail tbody tr').each(function (i, row) {
+        var rowdata = {};
+        // rowdata['id'] = $(this).find('.detail_primary_key').text();
+        rowdata['DetailNo'] = $(this).find('.zstt').text();
+        rowdata['ParentProductCode'] = $('input[data-field="Code"]').val();
+        rowdata['ChildProductCode'] = $(this).find('.product-code').val();
+        if ($(this).find('.quantity').val().replace(/,/g, '') == '') {
+            rowdata['Quantity'] = '0';
+        } else {
+            rowdata['Quantity'] = $(this).find('.quantity').val().replace(/,/g, '');
+        }
+
+
+        data[i] = rowdata;
+    });
+
+    return data;
 }
